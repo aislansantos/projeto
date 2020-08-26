@@ -1,0 +1,15 @@
+
+.container{
+    background-color: #EAEAEA;
+    padding: 15px;
+    height: 93vh;
+}
+
+.name{
+    width: 25%;
+}
+
+.email{
+    width: 75%;
+}
+
