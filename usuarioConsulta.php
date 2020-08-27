@@ -21,9 +21,9 @@ $usuario = new Usuarios($pdo);
     <div>
         <h4>Usuários - Consulta</h4>
         <hr>
-        <a href="#" class="btn btn-info">Novo</a>
+        <a href="usuarioSalvar.php" class="btn btn-info">Novo</a>
         <br><br>
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="tabelaUser">
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
@@ -52,6 +52,28 @@ $usuario = new Usuarios($pdo);
                 <?php endforeach ?>
             </tbody>
         </table>
+        <script>
+                $(document).ready(function() {
+                    $('#tabelaUser').DataTable({
+
+                        scrollY: '60vh',
+                        scrollCollapse: true,
+                        paging: false,
+
+
+                        "language": {
+                            "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                            "zeroRecords": "Nada encontrado",
+                            "info": "",
+                            "infoEmpty": "Nenhum registro disponivel",
+                            "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                            "search": "Pesquisar:",
+                        }
+
+
+                    });
+                });
+            </script>
     </div>
 </div>
 

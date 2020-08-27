@@ -20,16 +20,17 @@ class Usuarios{
 
     public function setId($i)
     {
-        $this->id = $id;
+     $this->id = $i;
+     
     }
 
     public function getNome()
     {
         return $this->nome;
     }
-    public function setNome($nome)
+    public function setNome($n)
     {
-        $this->nome = $nome;
+        $this->nome = $n;
     }
 
 
@@ -37,9 +38,9 @@ class Usuarios{
     {
         return $this->senha;
     }
-    public function setSenha($senha)
+    public function setSenha($s)
     {
-        $this->senha = $senha;
+        $this->senha = $s;
     }
 
     
@@ -47,9 +48,9 @@ class Usuarios{
     {
         return $this->email;
     }
-    public function setEmail($email)
+    public function setEmail($e)
     {
-        $this->email = $email;
+       $this->email = $e;
     }
 
     
@@ -57,9 +58,9 @@ class Usuarios{
     {
         return $this->tipo;
     }
-    public function setTipo($tipo)
+    public function setTipo($t)
     {
-        $this->tipo = $tipo;
+       $this->tipo = $t;
     }
 
     public function listaGeral(){
@@ -74,21 +75,21 @@ class Usuarios{
          
     }
 
-    public function consultaCadastro($i){
-        $sql = "SELECT id FROM usuarios WHERE id = :id";
+    public function consultaCadastro($nome){
+        $sql = "SELECT * FROM usuarios WHERE nome = :nome";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':nome', $this->nome);
         $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            return $stmt->fetch();
+        if ($stmt->rowCount() == 0) {
+            return true;
         }else{
-            return array();
+            return false;
         }
     }
 
     public function salvarCadastro(){
-        if (consultaCadastro() == true) {
+        if ($this->consultaCadastro($this->nome) == true) {
             $sql = "INSERT INTO usuarios (nome, senha, email, tipo) VALUES (:nome, :senha, :email, :tipo)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':nome', $this->nome);
