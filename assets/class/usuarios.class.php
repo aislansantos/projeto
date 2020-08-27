@@ -1,5 +1,6 @@
 <?php
 class Usuarios{
+    private $id;
     private $nome;
     private $senha;
     private $email;
@@ -11,6 +12,17 @@ class Usuarios{
     }
 
     
+  
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($i)
+    {
+        $this->id = $id;
+    }
+
     public function getNome()
     {
         return $this->nome;
@@ -61,4 +73,39 @@ class Usuarios{
         }
          
     }
+
+    public function consultaCadastro($i){
+        $sql = "SELECT id FROM usuarios WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $this->id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch();
+        }else{
+            return array();
+        }
+    }
+
+    public function salvarCadastro(){
+        if (consultaCadastro() == true) {
+            $sql = "INSERT INTO usuarios (nome, senha, email, tipo) VALUES (:nome, :senha, :email, :tipo)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':nome', $this->nome);
+            $stmt->bindValue(':senha', $this->senha);
+            $stmt->bindValue(':email', $this->email);
+            $stmt->bindValue(':tipo', $this->tipo);
+            $stmt->execute();
+        }else {
+            $sql = "UPDATE usuarios SET nome = :nome, senha = :senha, email = :email, tipo = :tipo";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':nome', $this->nome);
+            $stmt->bindValue(':senha', $this->senha);
+            $stmt->bindValue(':email', $this->email);
+            $stmt->bindValue(':tipo', $this->tipo);
+            $stmt->execute();
+        }
+    }
+
+
 }
