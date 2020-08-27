@@ -21,6 +21,8 @@ if (isset($_POST['username']) && !empty($_POST['password'])) {
   $login->setPass($password);
 
   $login->fazerLogin();
+
+  header("Location: principal.php");
 }
 
 

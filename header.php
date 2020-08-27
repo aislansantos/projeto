@@ -27,7 +27,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Projeto Controle</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                             Cadastro
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Usuario</a>
+                            <a class="dropdown-item" href="usuarioConsulta.php">Usuario</a>
                             <a class="dropdown-item" href="#">Filial</a>
                             <a class="dropdown-item" href="#">Vendedor</a>
                             <div class="dropdown-divider"></div>
@@ -63,3 +63,4 @@
                     </li>
                 </ul>
             </div>
+    </div>

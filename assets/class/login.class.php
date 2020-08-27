@@ -7,7 +7,7 @@ Class Login{
     private $pdo;
 
     public function __construct($pdo){
-        $this->pdo;
+        $this->pdo = $pdo;
     }
 
 /* Métodos de Getters e Setters das variaveis privadas */
@@ -48,12 +48,12 @@ Class Login{
     {
         $sql = "SELECT * FROM usuarios WHERE nome = '$this->user' AND senha = '$this->pass' ";
         $sql = $this->pdo->query($sql);
-         /*
+         
         if ($sql->rowCount() > 0) {
             $_SESSION['ativo'] = true;
             $_SESSION['user'] = $this->user;
         }
-        */
+        
     }
 
 }

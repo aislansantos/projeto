@@ -1,5 +1,5 @@
 <?php
-$dsn="mysql: dbname= projeto;host=localhost";
+$dsn="mysql:dbname=projeto;host=localhost";
 $dbuser = "root";
 $dbpass ="";
 
