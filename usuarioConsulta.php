@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION['user']) && $_SESSION['ativo']!= true  ) {
+if (empty($_SESSION['user']) && $_SESSION['ativo'] != true) {
     session_destroy();
     header("Location: login.php");
 }
@@ -34,46 +34,46 @@ $usuario = new Usuarios($pdo);
             </thead>
             <tbody>
                 <?php $lista = $usuario->listaGeral();
-                foreach($lista as $item):
+                foreach ($lista as $item) :
                 ?>
-                <tr>
-                    <td><?= $item['nome']; ?></td>
-                    <td><?= $item['email']; ?></td>
-                    <td><?php if ( $item['tipo'] === 'opr') {
-                        echo 'Operador';
-                    }else{
-                        echo 'Administrador';
-                    } ?></td>
-                    <td>
-                        <a href="#" class="btn btn-info">Editar</a>
-                        <a href="#" class="btn btn-danger">Excluir</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $item['nome']; ?></td>
+                        <td><?= $item['email']; ?></td>
+                        <td><?php if ($item['tipo'] === 'opr') {
+                                echo 'Operador';
+                            } else {
+                                echo 'Administrador';
+                            } ?></td>
+                        <td>
+                            <a href="usuarioSalvar.php?id=<?= $item['id']; ?>" class="btn btn-info">Editar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
         <script>
-                $(document).ready(function() {
-                    $('#tabelaUser').DataTable({
+            $(document).ready(function() {
+                $('#tabelaUser').DataTable({
 
-                        scrollY: '60vh',
-                        scrollCollapse: true,
-                        paging: false,
-
-
-                        "language": {
-                            "lengthMenu": "Mostrando _MENU_ registros por pagina",
-                            "zeroRecords": "Nada encontrado",
-                            "info": "",
-                            "infoEmpty": "Nenhum registro disponivel",
-                            "infoFiltered": "(Filtrado de _MAX_ total registros)",
-                            "search": "Pesquisar:",
-                        }
+                    scrollY: '60vh',
+                    scrollCollapse: true,
+                    paging: false,
 
 
-                    });
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "",
+                        "infoEmpty": "Nenhum registro disponivel",
+                        "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                        "search": "Pesquisar:",
+                    }
+
+
                 });
-            </script>
+            });
+        </script>
     </div>
 </div>
 
