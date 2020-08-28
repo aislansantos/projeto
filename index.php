@@ -2,10 +2,10 @@
 session_start();
 
 
-if (empty($_SESSION['user']) && $_SESSION['ativo']!= true  ) {
+if (empty($_SESSION['user']) && $_SESSION['ativo'] != true) {
     session_destroy();
     header("Location: login.php");
-}else{
+} else {
     header("Location: principal.php");
 }
 

@@ -44,13 +44,20 @@ Class Login{
         $this->tipo = $t;
     }
 
+    /** --- Função para fazer o longin confirmando usuário no bando de dados --- **/
     public function fazerLogin()
     {
+        /** --- Comando pesquisand o nome e senha para selecionar se os registros ja exite na tabela --- **/
         $sql = "SELECT * FROM usuarios WHERE nome = '$this->user' AND senha = '$this->pass' ";
+        /** --- Como não vamos manipular nem filtar os dados podemos usar a query 
+         * ao invés do prepare do statement --- **/
         $sql = $this->pdo->query($sql);
          
+         /** --- contamos se alguma linha foi encontrada na pesquisa --- */
         if ($sql->rowCount() > 0) {
+            /** --- Se encontrarmos registro ativamos a sesison --- **/
             $_SESSION['ativo'] = true;
+            /** --- e setamos user como o usario encontrado --- **/
             $_SESSION['user'] = $this->user;
         }
         
