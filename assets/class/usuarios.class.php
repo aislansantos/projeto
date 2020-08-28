@@ -75,7 +75,6 @@ class Usuarios
         /** --- Como não vamos manipular nem filtar os dados podemos usar a query 
          * ao invés do prepare do statement --- **/
         $sql = $this->pdo->query($sql);
-
         /** --- contamos se alguma linha foi encontrada na pesquisa --- */
         if ($sql->rowCount() > 0) {
             /** --- retornamos todos os registros encontrados na consulta
@@ -87,56 +86,83 @@ class Usuarios
         }
     }
 
-    /** --------- Pesquisa para confirmar se se o nome cadastrado ja existe
-     * para no caso de existir editar ao invés de cadastrar novo --------- **/
+    /** --------- Pesquisa para confirmar se o nome de usuário
+     * ainda não existe para fazermos um novo cadastro --------- **/
     public function consultaCadastro()
     {
-        /** ---  --- **/
+        /** --- Comando pesquisand o nome para selecionar se nome ja exite na tabela --- **/
         $sql = "SELECT * FROM usuarios WHERE nome = :nome";
+        /** --- Preparando o comando SQL para execução **/
         $stmt = $this->pdo->prepare($sql);
+        /** --- Substituimos o ":nome" da pesquisa pela variavel nome na classe **/
         $stmt->bindValue(':nome', $this->nome);
+        /** --- Executamos o statement para rodar o SQL --- **/
         $stmt->execute();
 
+        /** --- Conferimos se o nome de usuário realmente não existe para fazermos o cadastro --- **/
         if ($stmt->rowCount() == 0) {
+            /** --- Se o nome não existe ele retorna true para a função --- **/
             return true;
         } else {
+            /** --- Se o nome existe ele retorna falso para a função --- **/
             return false;
         }
     }
 
+    /** --------- Função para confirmarmos se o ID ja existe para,
+     * editar o registro ---------- **/
     public function consultaEditar()
     {
+        /** --- Comando para procurar o id na base de dados --- **/
         $sql = "SELECT * FROM usuarios WHERE id = :id";
+        /** --- Preparando o comando SQL para execução --- **/
         $stmt = $this->pdo->prepare($sql);
+        /** --- Substituimos o ":nome" da pesquisa pela variavel nome na classe --- **/
         $stmt->bindValue(':id', $this->id);
+        /** --- Executamos o statement para rodar o SQL --- **/
         $stmt->execute();
 
-
+        /** --- Conferimos se o ID existe se tiver alguma linha --- **/
         if ($stmt->rowCount() > 0) {
+            /** --- se existir o cadastrastro ele retorna todos os dados do usuário em um array --- **/
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
+            /** --- se não existir o cadastrastro ele retorna um array em vazio --- **/
             return array();
         }
     }
 
+    /** -------- Função para cadastrar e alterar cadastro de ususarios --------- **/
     public function salvarCadastro()
     {
+        /** --- Confirmamos que o ID é não está em branco --- **/
         if (!empty($this->id)) {
+            /** --- Se o id não estiver vazio informamos o comando de Update a ser executado --- **/
             $sql = "UPDATE usuarios SET nome = :nome, senha = :senha, email = :email, tipo = :tipo WHERE id = :id";
+            /** --- Preparando o comando SQL para execução **/
             $stmt = $this->pdo->prepare($sql);
+            /** ---------- Substituimos os :talcoisa da pesquisa pela variavel na classe ---------- **/
             $stmt->bindValue(':id', $this->id);
             $stmt->bindValue(':nome', $this->nome);
             $stmt->bindValue(':senha', $this->senha);
             $stmt->bindValue(':email', $this->email);
             $stmt->bindValue(':tipo', $this->tipo);
+            /** ---------- terminamos de substituir os :talcoisa da pesquisa pela variavel na classe ---------- **/
+            /** --- Executamos o statement para rodar o SQL --- **/
             $stmt->execute();
+            /** --- Executa a instrução pra saber se ono não exite na tabela,Se o registro consultado na funão não existe --- **/
         } elseif ($this->consultaCadastro() == true) {
+            /** --- Se o nome não existir informamos o comando de INSERT a ser executado  --- **/
             $sql = "INSERT INTO usuarios (nome, senha, email, tipo) VALUES (:nome, :senha, :email, :tipo)";
+            /** --- Preparando o comando SQL para execução **/
             $stmt = $this->pdo->prepare($sql);
+            /** ---------- Substituimos os :talcoisa da pesquisa pela variavel na classe ---------- **/
             $stmt->bindValue(':nome', $this->nome);
             $stmt->bindValue(':senha', $this->senha);
             $stmt->bindValue(':email', $this->email);
             $stmt->bindValue(':tipo', $this->tipo);
+            /** ---------- terminamos de substituir os :talcoisa da pesquisa pela variavel na classe ---------- **/
+            /** --- Executamos o statement para rodar o SQL --- **/
             $stmt->execute();
         }
     }
