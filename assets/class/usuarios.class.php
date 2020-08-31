@@ -126,6 +126,7 @@ class Usuarios
         if ($stmt->rowCount() > 0) {
             /** --- se existir o cadastrastro ele retorna todos os dados do usuário em um array --- **/
             return $stmt->fetch(PDO::FETCH_ASSOC);
+            return true;
         } else {
             /** --- se não existir o cadastrastro ele retorna um array em vazio --- **/
             return array();
@@ -165,5 +166,16 @@ class Usuarios
             /** --- Executamos o statement para rodar o SQL --- **/
             $stmt->execute();
         }
+    }
+
+
+    public function deletarCadastro(){
+        if ($this->consultaEditar() == true) {
+            $sql = "DELETE FROM usuarios WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->execute();
+        }
+
     }
 }

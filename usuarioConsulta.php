@@ -46,7 +46,7 @@ $usuario = new Usuarios($pdo);
                             } ?></td>
                         <td>
                             <a href="usuarioSalvar.php?id=<?= $item['id']; ?>" class="btn btn-info">Editar</a>
-                            <a href="#" class="btn btn-danger">Excluir</a>
+                            <a href="usuarioDeletar.php?id=<?= $item['id']; ?>" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
