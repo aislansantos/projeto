@@ -169,11 +169,17 @@ class Usuarios
     }
 
 
+      /** -------- Função para deletar ususarios --------- **/
     public function deletarCadastro(){
+        /** verifica se o usuario existe **/
         if ($this->consultaEditar() == true) {
+            /** se existir entra na condição e prepara o comando $sql DELETE **/
             $sql = "DELETE FROM usuarios WHERE id = :id";
+            /** --- Preparando o comando SQL para execução **/
             $stmt = $this->pdo->prepare($sql);
+             /** ---------- Substituimos os :talcoisa da pesquisa pela variavel na classe ---------- **/
             $stmt->bindValue(':id', $this->id);
+            /** --- Executamos o statement para rodar o SQL --- **/
             $stmt->execute();
         }
 
