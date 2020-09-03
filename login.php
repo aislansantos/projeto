@@ -1,10 +1,7 @@
 <?php
+/** iniciamos a session  **/
 session_start();
-if (isset($_SESSION['ativo'])) {
-  if ($_SESSION['ativo'] == true) {
-    header("Location: index.php");
-  }
-}
+
 
 
 require('config.php');

@@ -16,6 +16,9 @@ if (empty($_SESSION['user']) && $_SESSION['ativo'] != true) {
     header("Location: principal.php");
 }
 
+/** verificamos que se ação do get for sair do index destruimos a seção 
+ * e redirecionamos pro login
+ */
 if ($_GET['acao'] === 'sair') {
     session_destroy();
     header("Location: login.php");
