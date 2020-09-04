@@ -5,11 +5,18 @@
     height: 93vh;
 }
 
-.name{
-    width: 25%;
-}
-
-.email{
+#email{
     width: 75%;
 }
 
+#nome{
+    width: 50%;
+}
+
+#senha{
+    width: 25%;
+}
+
+#tipo{
+    width: 15%;
+}

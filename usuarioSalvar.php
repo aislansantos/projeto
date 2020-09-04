@@ -54,21 +54,22 @@ if (isset($_POST['nome'])) {
         <br><br>
         <form action="" method="post" class="form-group">
 
-            <input type="text" name="id" id="id" class="form-control" value="<?php if (!empty($lista['id'])) {
-                                                                            echo $lista['id'];
-                                                                        } ?>" readOnly="true">
+            <input type="hidden" name="id" id="id" class="form-control" value="<?php if (!empty($lista['id'])) {
+                                                                                    echo $lista['id'];
+                                                                                } ?>" readOnly="true">
             <label for=""></label>Nome:</label>
             <input type="text" name="nome" id="nome" class="form-control" value=<?php if (!empty($lista['nome'])) {
                                                                                     echo $lista['nome'];
                                                                                 } ?>>
-            <label for=""></label>Senha:</label>
-            <input type="text" name="senha" id="senha" class="form-control" value="<?php if (!empty($lista['senha'])) {
-                                                                                        echo $lista['senha'];
-                                                                                    } ?>">
+
             <label for=""></label>email:</label>
             <input type="text" name="email" id="email" class="form-control" value="<?php if (!empty($lista['email'])) {
                                                                                         echo $lista['email'];
                                                                                     } ?>">
+            <label for=""></label>Senha:</label>
+            <input type="text" name="senha" id="senha" class="form-control" value="<?php if (!empty($lista['senha'])) {
+                                                                                        echo $lista['senha'];
+                                                                                    } ?>" maxlength="10">
             <label for=""></label>tipo:</label>
             <select name="tipo" id="tipo" class="form-control">
                 <option value="adm" <?php if (!empty($lista['tipo'])) {

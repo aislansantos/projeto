@@ -51,7 +51,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="usuarioConsulta.php">Usuario</a>
-                            <a class="dropdown-item" href="#">Filial</a>
+                            <a class="dropdown-item" href="filialConsulta.php">Filial</a>
                             <a class="dropdown-item" href="#">Vendedor</a>
                             <div class="dropdown-divider"></div>
                         </div>
