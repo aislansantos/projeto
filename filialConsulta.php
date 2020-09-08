@@ -13,14 +13,14 @@ $filial = new Filial($pdo);
 
 <?php require("header.php"); ?>
 
-<div class="container">
+<div class="corpo">
     <div>
         <h4>Filiais - Consulta</h4>
         <hr>
-        <a href="#" class="btn btn-info">Novo</a>
+        <a href="filialSalvar.php" class="btn btn-info">Novo</a>
         <br><br>
 
-        <table class="table table-striped table-hover" id="tabelaUser">
+        <table class="table table-striped table-hover" id="tabelaFilial">
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
@@ -34,13 +34,36 @@ $filial = new Filial($pdo);
                     <tr>
                         <td><?= $item['nome']; ?></td>
                         <td>
-                            <a href="#" class="btn btn-info">Editar</a>
+                            <a href="filialSalvar.php" class="btn btn-info">Editar</a>
                             <a href="#" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
+
+        <script>
+            $(document).ready(function() {
+                $('#tabelaFilial').DataTable({
+
+                    scrollY: '60vh',
+                    scrollCollapse: true,
+                    paging: false,
+
+
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "",
+                        "infoEmpty": "Nenhum registro disponivel",
+                        "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                        "search": "Pesquisar:",
+                    }
+
+
+                });
+            });
+        </script>
     </div>
 </div>
 

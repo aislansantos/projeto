@@ -1,22 +1,27 @@
-
-.container{
+.container {
     background-color: #EAEAEA;
     padding: 15px;
     height: 93vh;
 }
 
-#email{
+#email {
     width: 75%;
 }
 
-#nome{
+#nome {
     width: 50%;
 }
 
-#senha{
+#senha {
     width: 25%;
 }
 
-#tipo{
+#tipo {
     width: 15%;
+}
+
+.corpo {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 10px;
 }
